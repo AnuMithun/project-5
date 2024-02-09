@@ -1,184 +1,193 @@
-<!DOCTYPE html> 
-<html> 
-
-<head> 
-	<title>Age Calculator</title> 
-	<link rel="stylesheet"
-		href="style.css" /> 
-</head> 
-
-<body> 
-	<div class="card"> 
-		<header> 
-			<h1>AGE CALCULATOR</h1> 
-		</header> 
-
-		<div> 
-			<label>Enter your Date of Birth</label> 
-
-			<input id="inputDob"
-				type="date"
-				value="2000-01-01" /> 
-		</div> 
-		<br /> 
-
-		<!-- Take the date from which age is to be calculated -->
-		<div> 
-			<label>Current Date</label><br> 
-			<input id="cdate"
-				type="date"
-				value="" /> 
-		</div> 
-		<br /> 
-
-		<button type="button"
-				onclick="getDOB()"> 
-			Calculate 
-		</button> 
-		<br /> 
-		<div id="currentAge"></div> 
-		<script src="script.js"></script> 
-	</div> 
-</body> 
-
-</html>
-/* Setting alignment and fonts */
-body { 
-	display: flex; 
-	text-align: center; 
-	font-family: 
-	"Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", 
-		sans-serif; 
-} 
-
-/* Defining card properties */
-.card { 
-	min-width: 30%; 
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
-	transition: 0.3s; 
-	border-radius: 5px; 
-	margin: auto; 
-	padding: 2%; 
-	padding-top: 0%; 
-} 
-
-header { 
-	font-size: larger; 
-} 
-
-header h1 { 
-	background-color: rgb(231, 231, 231); 
-	color: green; 
-	font-size: xx-large; 
-	padding: 1%; 
-} 
-
-/* Setting font and margin for text before input box */
-label { 
-	font-size: large; 
-	margin: 2%; 
-} 
-
-button { 
-	font-size: large; 
-	padding: 1%; 
-} 
-
-input { 
-	width: 200px; 
-	height: 50px; 
-	font-size: larger; 
-	font-family: Arial, Helvetica, sans-serif; 
-	text-align: center; 
-} 
-
-#inputDob { 
-	margin: 2%; 
-} 
-
-p { 
-	font-size: larger; 
-	margin: 5%; 
-} 
-
-#currentAge { 
-	min-width: 30%; 
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
-	transition: 0.3s; 
-	border-radius: 5px; 
-	margin: auto; 
-	margin-top: 5%; 
-	padding: 5%; 
-	padding-top: 7%; 
-	font-size: larger; 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #2782e3;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
 }
-// Define funtion to get calculated Age 
-function getDOB() { 
-
-	// Getting input from html input element 
-	let data = 
-		document.getElementById("inputDob").value; 
-
-	// Convert input data to usable format 
-	// as day,month and year 
-	let dob = new Date(data); 
-	let day = dob.getDate(); 
-	let month = dob.getMonth(); 
-	let year = dob.getFullYear(); 
-
-	// Getting current date and calculating the difference 
-	let now = 
-		new Date(document.getElementById("cdate").value); 
-	console.log(now); 
-	let yearDiff = now.getFullYear() - year; 
-	let monthDiff = now.getMonth() - month; 
-	let dateDiff = now.getDate() - day; 
-
-	// Calculating the Age 
-	if (yearDiff < 0) console.log("invalid date"); 
-	else if (monthDiff > 0) { 
-		console.log(yearDiff); 
-	} else if (monthDiff === 0 && dateDiff >= 0) { 
-		console.log(yearDiff); 
-	} else { 
-		yearDiff = yearDiff - 1; 
-		if (monthDiff <= 0) 
-			if (dateDiff > 0) monthDiff = 12 + monthDiff; 
-			else monthDiff = 11 - monthDiff; 
-	} 
-	if (dateDiff < 0) { 
-		dateDiff = 30 + dateDiff; 
-		monthDiff -= 1; 
-	} 
-
-	// Show calculated age as output 
-	// and invalid if wrong input is given 
-	if (yearDiff < 0) 
-		document.getElementById("currentAge").innerHTML = "Invalid Date"; 
-	else
-		document.getElementById("currentAge").innerHTML = 
-			"Your current Age is " + yearDiff + " years "
-			+ monthDiff + " months " + dateDiff + " days"; 
-} 
-
-// Function to provide default date value 
-function currentDate() { 
-	console.log(formatted()); 
-	let d = document.getElementById("cdate"); 
-	d.value = formatted(); 
-} 
-
-function formatted(date = new Date()) { 
-	return [ 
-		date.getFullYear(), 
-		short(date.getMonth() + 1), 
-		short(date.getDate()), 
-	].join("-"); 
-} 
-function short(num) { 
-	return num.toString().padStart(2, "0"); 
-} 
-
-// Calling current date function to set default date value 
-currentDate();
-
+* {
+    box-sizing: border-box;
+}
+.container {
+    width: 520px;
+    height: auto;
+    margin: 100px auto;
+    background-color: #eee;
+    border-radius: 25px;
+}
+.base {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    display: block;
+    float: none;
+}
+.block {
+    width: 135px;
+    padding: 5px 20px;
+    margin-left: 20px;
+    display: inline-block;
+    float: left;
+}
+.base h4 {
+    font-size: 26px;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: normal;
+    margin-top: 0px;
+    box-shadow: 0px 2px #bababa;
+    background: white;
+    font-size: 34px;
+    color: navy;
+}
+.title {
+    font-size: 20px;
+    text-align: left;
+    font-family: sans-serif;
+    font-weight: normal;
+    line-height: 0.5;
+    letter-spacing: 0.5px;
+    word-spacing: 2.7px;
+    color: #1073d0;
+}
+input[type="text"] {
+    width: 140px;
+    margin: auto;
+    outline: none;
+    min-height: 50px;
+    border: 2px solid #1073d0;
+    padding: 12px;
+    background-color: #f7f7f7;
+    border-radius: 2px;
+    color: #1073d0;
+    font-size: 17px;
+}
+input[type="text"]:focus {
+    background-color: #ffffff;
+    border: 2px solid orange;
+    outline: none;
+}
+input[type="button"] {
+    width: 150px;
+    margin-left: 35%;
+    margin-top: 40px;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+    background-color: #0761b6;
+    color: #ffffff;
+    padding: 14px 16px;
+    text-align: center;
+    font-size: 16px;
+}
+input[type="button"]:hover {
+    background-color: #003669;
+}
+#age {
+    display: block;
+    margin: 10px;
+    margin-top: 35px;
+    padding: 10px;
+    padding-bottom: 20px;
+    overflow: hidden;
+    font-family: verdana;
+    font-size: 23px;
+    font-weight: normal;
+    line-height: 1.5;
+    word-spacing: 2.7px;
+    color: navy;
+}
+    </style>
+</head>
+<body>
+    <body>
+        <div class="container">
+            <form>
+                <div class="base">
+                    <div class="enter"><h4>Age Calculator</h4></div>
+                    <div class="block">
+                        <p class="title">Date</p>
+                        <input
+                            type="text"
+                            name="date"
+                            id="date"
+                            placeholder="dd"
+                            required="required"
+                            minlength="1"
+                            maxlength="2"
+                        />
+                    </div>
+                    <div class="block">
+                        <p class="title">Month</p>
+                        <input
+                            type="text"
+                            name="month"
+                            id="month"
+                            placeholder="mm"
+                            required="required"
+                            minlength="1"
+                            maxlength="2"
+                        />
+                    </div>
+                    <div class="block">
+                        <p class="title">Year</p>
+                        <input
+                            type="text"
+                            name="year"
+                            id="year"
+                            placeholder="yyyy"
+                            required="required"
+                            minlength="4"
+                            maxlength="4"
+                        />
+                    </div>
+                </div>
+                <div class="base">
+                    <div class="enter">
+                        <input
+                            type="button"
+                            name="submit"
+                            value="Submit"
+                            onclick="age()"
+                        />
+                    </div>
+                </div>
+                <div id="age"></div>
+            </form>
+        </div>
+        <script>
+            function age() {
+    var d1 = document.getElementById("date").value;
+    var m1 = document.getElementById("month").value;
+    var y1 = document.getElementById("year").value;
+    var date = new Date();
+    var d2 = date.getDate();
+    var m2 = 1 + date.getMonth();
+    var y2 = date.getFullYear();
+    var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (d1 > d2) {
+        d2 = d2 + month[m2 - 1];
+        m2 = m2 - 1;
+    }
+    if (m1 > m2) {
+        m2 = m2 + 12;
+        y2 = y2 - 1;
+    }
+    var d = d2 - d1;
+    var m = m2 - m1;
+    var y = y2 - y1;
+    document.getElementById("age").innerHTML =
+        "Your Age is " + y + " Years " + m + " Months " + d + " Days";
+}
+        </script>
+    </body>
+</body>
+</html>
